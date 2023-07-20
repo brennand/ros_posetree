@@ -21,6 +21,8 @@ class PoseTreeNode(Node):
 
         self.get_logger().info(f"Pose Tree Started")
 
+        self.i = 0
+
     def control_loop(self):
         # Check to make sure the tf transforms are ready for processing
         if not self.pose_tree.check_tf_ready("world", "camera_link"):
@@ -75,6 +77,12 @@ class PoseTreeNode(Node):
         x, y, _ = base_target.in_frame("world").position
         self.get_logger().info(f"base_target: {x}, {y}")
 
+        self.i += 1
+
+        if self.i > 2:
+            self.get_logger().info(f"\n\n Delete \n\n")
+            self.pose_marker.clear_all_markers()
+            self.i = 0
 
 def main():
     rclpy.init()

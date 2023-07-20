@@ -186,11 +186,24 @@ class PoseMarkerManager:
         Args:
             marker_id: The string ID of the marker to be deleted.
         """
-        if marker_id in self._markers:
-            pose_marker = self._markers[marker_id]
-            pose_marker.marker.action = Marker.DELETE
-            self._publisher.publish(pose_marker.marker)
-            del self._markers[marker_id]
+        # Check that the marker_id is valid
+        if not marker_id in self._markers:
+            return
+
+        # Get the markers to delete
+        markers = self._markers[marker_id].markers
+
+        # loop through all the markers and tag them for delete
+        for marker in markers:           
+            marker.action = Marker.DELETE
+
+        # Marker array msg and publish
+        marker_array_msg = MarkerArray()
+        marker_array_msg.markers.extend(markers)   
+        self._publisher.publish(marker_array_msg)
+
+        # Clear the markers so they are not published
+        self._markers[marker_id].markers = []
 
     def clear_all_markers(self):
         """
