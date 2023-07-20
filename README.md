@@ -30,11 +30,11 @@ compile this package with `colcon`
 
 To run the example script, use the following command in 2 terminals:
 ```
-python pose_tree_example.py
+python test/pose_tree_example.py
 ```
 
 ```
-python tf2_publisher.py
+python test/tf2_publisher.py
 ```
 
 Then start `rviz2` and add **TF** + **MarkerArray** to view the poses.
