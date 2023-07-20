@@ -2,14 +2,14 @@
 # ROS PoseTree Package
 
 ## Overview
-This package provides a ROS2 wrapper for the PoseTree library, which was written by Benjie Holson - https://github.com/robobenjie/posetree. It allows for efficient and easy calculations with poses and transforms in a ROS2 environment. This package is especially useful for dealing with complex robot systems where multiple transforms need to be managed and calculated.
+This package provides a ROS2 wrapper for the PoseTree library, which was written by **Benjie Holson** - https://github.com/robobenjie/posetree. It allows for efficient and easy calculations with poses and transforms in a ROS2 environment. This package is especially useful for dealing with complex robot systems where multiple transforms need to be managed and calculated.
 
 ## Key Components
 This package consists of several key components:
 
 - `ros_posetree.py`: which has `RosPoseTree` class, which fetches transforms from tf2 and converts them into a format that PoseTree understands.
 
-- `pose_marker_manager.py`: This module includes the `PoseMarker` and `PoseMarkerManager` classes for managing visualization markers in ROS. This helps the user to visvisulize the poses in RVIZ 
+- `pose_marker_manager.py`: This module includes the `PoseMarker` and `PoseMarkerManager` classes for managing visualization markers in ROS. This helps the user to visualize the poses in RVIZ.
 
 ## Example
 
