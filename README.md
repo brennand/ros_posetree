@@ -37,7 +37,7 @@ python pose_tree_example.py
 python tf2_publisher.py
 ```
 
-Then start `RIVZ2` and add `TF` + `MarkerArray` to view the poses.
+Then start `rviz2` and add **TF** + **MarkerArray** to view the poses.
 
 ## License
 This project is licensed under the BSD-3-Clause License.
