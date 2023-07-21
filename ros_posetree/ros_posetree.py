@@ -10,6 +10,8 @@ from visualization_msgs.msg import MarkerArray, Marker
 from std_msgs.msg import Header
 from geometry_msgs.msg import Point
 
+class RosTFTransformError(Exception):
+    pass
 
 class RosPoseTree(CustomFramePoseTree):
     """
@@ -111,10 +113,8 @@ class RosPoseTree(CustomFramePoseTree):
             tf2_ros.LookupException,
             tf2_ros.ConnectivityException,
             tf2_ros.ExtrapolationException,
+            tf2_ros.InvalidArgumentException,
         ) as e:
-            self._node.get_logger().error(
-                f"Transform from {parent_frame} to {child_frame} failed: {str(e)}"
-            )
-            # Not sure what to return to posetree?
-            return Transform
-
+            # The transformed failed, so raise an exception
+            error_msg = f"transform from frame '{parent_frame}' -> '{child_frame}' failed: {str(e)}"
+            raise RosTFTransformError(error_msg)
