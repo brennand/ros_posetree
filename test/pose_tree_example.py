@@ -64,7 +64,7 @@ class PoseTreeNode(Node):
         self.pose_marker.add_marker(human_pose, "human_pose")
 
         # Calculate things based on other frames
-        height_of_tea = pose_of_tea_bottle.in_frame("base_footprint").z
+        height_of_tea = pose_of_tea_bottle.in_frame("world").z
         self.get_logger().info(f"height_of_tea: {height_of_tea}")
 
         distance_from_gripper = pose_of_tea_bottle.distance_to(gripper_pose)
@@ -74,7 +74,7 @@ class PoseTreeNode(Node):
         base_target = base_pose.translate([2, 0, 0]).rotate_about_z(np.pi / 4)
 
         # Get numbers out of a pose to send to a motion API
-        x, y, _ = base_target.in_frame("world").position
+        x, y, _ = base_target.in_frame("base_footprint").position
         self.get_logger().info(f"base_target: {x}, {y}")
 
         self.i += 1
