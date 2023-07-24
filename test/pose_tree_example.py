@@ -74,7 +74,7 @@ class PoseTreeNode(Node):
         base_target = base_pose.translate([2, 0, 0]).rotate_about_z(np.pi / 4)
 
         # Get numbers out of a pose to send to a motion API
-        x, y, _ = base_target.in_frame("world").position
+        x, y, _ = base_target.in_frame("base_footprint").position
         self.get_logger().info(f"base_target: {x}, {y}")
 
         self.i += 1
