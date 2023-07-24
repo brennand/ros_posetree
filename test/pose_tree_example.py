@@ -64,7 +64,7 @@ class PoseTreeNode(Node):
         self.pose_marker.add_marker(human_pose, "human_pose")
 
         # Calculate things based on other frames
-        height_of_tea = pose_of_tea_bottle.in_frame("base_footprint").z
+        height_of_tea = pose_of_tea_bottle.in_frame("world").z
         self.get_logger().info(f"height_of_tea: {height_of_tea}")
 
         distance_from_gripper = pose_of_tea_bottle.distance_to(gripper_pose)
